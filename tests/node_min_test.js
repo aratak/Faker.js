@@ -1,6 +1,6 @@
 var sys = require('sys');
 
-var Faker = require('../Faker');
+var Faker = require('../index');
 
 var card = Faker.Helpers.createCard();
 
