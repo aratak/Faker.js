@@ -13,5 +13,8 @@
     "dependencies":{
       "underscore":"*"
     },
+    "devDependencies":{
+        "vows":"*"
+    },
     "main": "index"
 }
