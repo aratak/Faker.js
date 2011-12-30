@@ -11,9 +11,11 @@
         "node >=0.1.90"
     ],
     "dependencies":{
-      "underscore":"*"
+      "underscore":"*",
+      "jake":"*"
     },
     "devDependencies":{
+        "jake":"*",
         "vows":"*"
     },
     "main": "index"
