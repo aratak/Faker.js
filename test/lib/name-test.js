@@ -4,106 +4,57 @@ var mockery = require('mockery');
 describe('Faker::Name', function(){
   var Name;
 
-  describe('#firstName', function(){
+  beforeEach(function() {
+    mockery.enable();
+    mockery.registerAllowable('../index');
+    mockery.registerAllowable('../../lib/name');
+  });
 
-    before(function() {
-      mockery.enable();
+  afterEach(function() {
+    Name = undefined;
+    mockery.disable();
+    mockery.deregisterAll();
+  });
+
+  describe('#firstName', function(){
+    it('should pick up from definitions.first_name array element', function() {
+      mockery.registerAllowable('./helpers');
       mockery.registerMock('./definitions', {
         'first_name': function() { return ["Marry"]; }
       });
-      mockery.registerAllowable('../index');
-      mockery.registerAllowable('./helpers');
-      mockery.registerAllowable('../../lib/name');
-      Name = require('../../lib/name');
+      assert.equal(require('../../lib/name').firstName(), "Marry");
     });
 
-    after(function() {
-      Name = undefined;
-      mockery.disable();
-      mockery.deregisterAll();
-    });
-
-    it('should pick up from definitions.first_name array element', function() {
-      assert.equal(Name.firstName(), "Marry");
-    });
-
-  });
-
-  describe("#firstName", function() {
-    before(function() {
-      mockery.enable();
+    it('should pick up from definitions.first_name random element', function() {
       mockery.registerMock('./definitions', {
         'first_name': function() { return ["Marry", "Rolf", "Justin"]; }
       });
-      mockery.registerAllowable('../index');
-      mockery.registerAllowable('../../lib/name');
       mockery.registerMock('./helpers', {
         'randomize': function(a) { return a[0]; }
       });
-      Name = require('../../lib/name');
-    });
-
-    after(function() {
-      Name = undefined;
-      mockery.disable();
-      mockery.deregisterAll();
-    });
-
-    it('should pick up from definitions.first_name random element', function() {
-      assert.equal(Name.firstName(), "Marry");
+      assert.equal(require('../../lib/name').firstName(), "Marry");
     });
   });
 
-  describe('#firstName', function(){
+  describe('#lastName', function(){
 
-    before(function() {
-      mockery.enable();
+    it('should pick up from definitions.first_name array element', function() {
       mockery.registerMock('./definitions', {
         'last_name': function() { return ["Silver"]; }
       });
-      mockery.registerAllowable('../index');
       mockery.registerAllowable('./helpers');
-      mockery.registerAllowable('../../lib/name');
-      Name = require('../../lib/name');
-    });
-
-    after(function() {
-      Name = undefined;
-      mockery.disable();
-      mockery.deregisterAll();
-    });
-
-    it('should pick up from definitions.first_name array element', function() {
-      assert.equal(Name.lastName(), "Silver");
-    });
-
-  });
-
-  describe("#lastName", function() {
-    before(function() {
-      mockery.enable();
-      mockery.registerMock('./definitions', {
-        'last_name': function() { return ["Silver", "Back", "Einstein"]; }
-      });
-      mockery.registerAllowable('../index');
-      mockery.registerAllowable('../../lib/name');
-      mockery.registerMock('./helpers', {
-        'randomize': function(a) { return a[0]; }
-      });
-      Name = require('../../lib/name');
-    });
-
-    after(function() {
-      Name = undefined;
-      mockery.disable();
-      mockery.deregisterAll();
+      assert.equal(require('../../lib/name').lastName(), "Silver");
     });
 
     it('should pick up from definitions.first_name random element', function() {
-      assert.equal(Name.lastName(), "Silver");
+      mockery.registerMock('./definitions', {
+        'last_name': function() { return ["Silver", "Back", "Einstein"]; }
+      });
+      mockery.registerMock('./helpers', {
+        'randomize': function(a) { return a[0]; }
+      });
+      assert.equal(require('../../lib/name').lastName(), "Silver");
     });
   });
-
-
 
 });
