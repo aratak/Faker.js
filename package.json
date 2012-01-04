@@ -11,7 +11,14 @@
         "node >=0.1.90"
     ],
     "dependencies":{
-      "underscore":"*"
+      "underscore":"*",
+      "jake":"*"
     },
-    "main": "index"
+    "devDependencies":{
+        "jake":"*",
+        "mockery":"*",
+        "mocha":"*"
+    },
+    "main": "index",
+    "scripts": {"test": "./node_modules/mocha/bin/mocha ./test/**/*-test.js"}
 }
