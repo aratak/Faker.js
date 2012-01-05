@@ -2,7 +2,6 @@ var assert = require('assert');
 var mockery = require('mockery');
 
 describe('Faker::Name', function(){
-  var Name;
 
   beforeEach(function() {
     mockery.enable();
@@ -11,7 +10,6 @@ describe('Faker::Name', function(){
   });
 
   afterEach(function() {
-    Name = undefined;
     mockery.disable();
     mockery.deregisterAll();
   });

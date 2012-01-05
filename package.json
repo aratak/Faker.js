@@ -16,9 +16,9 @@
     },
     "devDependencies":{
         "jake":"*",
-        "mockery":"*",
+        "horaa":"*",
         "mocha":"*"
     },
     "main": "index",
-    "scripts": {"test": "./node_modules/mocha/bin/mocha ./test/**/*-test.js"}
+    "scripts": {"test": "./node_modules/mocha/bin/mocha ./test/**/*-test.js --reporter progress"}
 }
